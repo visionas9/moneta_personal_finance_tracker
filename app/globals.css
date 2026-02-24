@@ -7,9 +7,11 @@
   --font-roboto-mono: "Roboto Mono", monospace;
 
   /* ---COLOR PALET---*/
-  --color-ink-black: #050517;
-  --color-mint-cream: #f2f7f2;
-  --color-pumpkin-spice: #f5853f;
-  --color-deep-lilac: #6247aa;
-  --color-coffee-bean: #1c1018;
+  --color-ink-black: #050517; /* Header and sidebar background */
+  --color-mint-cream: #f2f7f2; /* Primary text */
+  --color-pumpkin-spice: #f5853f; /* Buttons, accents, logo highlight */
+  --color-pumpkin-dark: #c9621a; /* Hover state for pumpkin buttons */
+  --color-deep-lilac: #6247aa; /* Secondary accent, fallback for pumpkin */
+  --color-coffee-bean: #1c1018; /* Page background */
+  --color-lighter-text: #a0a8a0; /* Secondary text, labels, dates */
 }
