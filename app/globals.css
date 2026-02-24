@@ -14,4 +14,7 @@
   --color-deep-lilac: #6247aa; /* Secondary accent, fallback for pumpkin */
   --color-coffee-bean: #1c1018; /* Page background */
   --color-lighter-text: #a0a8a0; /* Secondary text, labels, dates */
+  --color-success: #4caf7d; /* Positive change, income */
+  --color-danger: #e05c5c; /* Negative change, expenses */
+  --color-surface: #2a1f26; /* Card and panel backgrounds */
 }

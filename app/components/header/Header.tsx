@@ -8,7 +8,10 @@ export default function Header() {
         <p className="text-lighter-text">Your personal finance tracker.</p>
       </div>
 
-      <button className="self-center px-4 py-2 bg-pumpkin-spice mr-10 border-none rounded cursor-pointer hover:bg-pumpkin-dark ">
+      <button
+        className="self-center px-4 py-2 bg-pumpkin-spice mr-10 
+      border-none rounded cursor-pointer hover:bg-pumpkin-dark "
+      >
         + Add transaction
       </button>
     </div>

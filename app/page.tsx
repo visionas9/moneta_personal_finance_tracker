@@ -1,7 +1,20 @@
+import SumCards from "@/app/components/ui/SumCards";
+
+const cards = [
+  { label: "TOTAL BALANCE", value: "$4,280", change: "+12%" },
+  { label: "TOTAL INCOME", value: "$6,500", change: "+5%" },
+  { label: "TOTAL EXPENSES", value: "$2,220", change: "+8%" },
+  { label: "SAVINGS RATE", value: "34%", change: "of income" },
+];
+
 export default function MainPage() {
   return (
-    <h1 className="flex items-center justify-center font-nunito text-3xl">
-      Main Page goes here!
-    </h1>
+    <main>
+      <div className="grid grid-cols-4 gap-6 px-10 mt-8">
+        {cards.map((card) => (
+          <SumCards key={card.label} {...card} />
+        ))}
+      </div>
+    </main>
   );
 }
