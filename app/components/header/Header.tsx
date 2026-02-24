@@ -1,5 +1,8 @@
 export default function Header() {
   return (
-    <h1 className="flex items-center justify-center">Header goes here!</h1>
+    <div className="flex flex-col items-center justify-center py-4 bg-ink-black text-mint-cream">
+      <h1 className=" font-montserrat text-3xl">Moneta</h1>
+      <p>Your personal finance tracker.</p>
+    </div>
   );
 }
