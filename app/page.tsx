@@ -1,4 +1,6 @@
 import SumCards from "@/app/components/ui/SumCards";
+import PieChartCustomizedLabel from "@/app/components/MyPieChart";
+import SpendingsCategory from "./components/categories/Spendings";
 
 const cards = [
   { label: "TOTAL BALANCE", value: "$4,280", change: "+12%" },
@@ -15,6 +17,8 @@ export default function MainPage() {
           <SumCards key={card.label} {...card} />
         ))}
       </div>
+
+      <SpendingsCategory />
     </main>
   );
 }
