@@ -1,6 +1,6 @@
 "use client";
 
-import SimpleBarChart from "@/app/components/MyBarChart";
+import SimpleBarChart from "@/app/components/charts/MyBarChart";
 
 export default function IncomeAndExpenses() {
   return (

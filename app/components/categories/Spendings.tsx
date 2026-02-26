@@ -1,4 +1,4 @@
-import PieChartCustomizedLabel from "@/app/components/MyPieChart";
+import PieChartCustomizedLabel from "@/app/components/charts/MyPieChart";
 
 const categories = [
   { color: "#f5853f", name: "Housing", value: "720$" },
@@ -23,18 +23,16 @@ export default function SpendingsCategory() {
           {categories.map((category) => (
             <div
               key={category.name}
-              className="flex items-center justify-between gap-6"
+              className="flex items-center justify-between gap-8 py-2"
             >
               <p className="text-lighter-text">
                 <span
-                  className="w-3 h-3 rounded-sm inline-block ml-5"
+                  className="w-3 h-3 rounded-sm inline-block mr-3"
                   style={{ backgroundColor: category.color }}
                 ></span>
                 {category.name}
               </p>
-              <p className="text-roboto-mono text-mint-cream">
-                {category.value}
-              </p>
+              <p className="text-roboto-mono text-danger">-{category.value}</p>
             </div>
           ))}
         </div>

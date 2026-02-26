@@ -62,7 +62,7 @@ export default function PieChartCustomizedLabel({
   return (
     <PieChart
       style={{
-        width: "50%",
+        width: "60%",
         maxWidth: "350px",
         maxHeight: "60vh",
         aspectRatio: 1,

@@ -17,4 +17,5 @@
   --color-success: #4caf7d; /* Positive change, income */
   --color-danger: #e05c5c; /* Negative change, expenses */
   --color-surface: #2a1f26; /* Card and panel backgrounds */
+  --color-surface-hover: #3a2d36; /* Hover state for transaction rows */
 }
