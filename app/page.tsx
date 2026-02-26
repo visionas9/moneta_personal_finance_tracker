@@ -1,6 +1,7 @@
 import SumCards from "@/app/components/ui/SumCards";
 import PieChartCustomizedLabel from "@/app/components/MyPieChart";
 import SpendingsCategory from "./components/categories/Spendings";
+import IncomeAndExpenses from "./components/categories/IncomeAndExpenses";
 
 const cards = [
   { label: "TOTAL BALANCE", value: "$4,280", change: "+12%" },
@@ -18,7 +19,10 @@ export default function MainPage() {
         ))}
       </div>
 
-      <SpendingsCategory />
+      <div className="flex items-stretch gap-6">
+        <SpendingsCategory />
+        <IncomeAndExpenses />
+      </div>
     </main>
   );
 }
