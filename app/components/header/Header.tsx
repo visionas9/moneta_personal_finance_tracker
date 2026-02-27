@@ -1,3 +1,5 @@
+import TransactionForm from "@/app/components/form/TransactionForm";
+
 export default function Header() {
   return (
     <div className="flex justify-between py-4 bg-ink-black text-mint-cream">
