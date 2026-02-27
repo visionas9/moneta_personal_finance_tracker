@@ -4,6 +4,7 @@ import Header from "@/app/components/header/Header";
 import SideNavBar from "@/app/components/sideBar/SideNavBar";
 import { Montserrat, Nunito, Roboto_Mono } from "next/font/google";
 import ContextProvider from "./context/ContextProvider";
+import Modal from "@/app/components/form/Modal";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
               <main className="flex-1 bg-coffee-bean">{children}</main>
             </div>
           </div>
+          <Modal />
         </ContextProvider>
       </body>
     </html>
