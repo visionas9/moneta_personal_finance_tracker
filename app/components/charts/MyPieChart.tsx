@@ -1,24 +1,10 @@
 "use client";
-import {
-  Pie,
-  PieChart,
-  PieLabelRenderProps,
-  PieSectorShapeProps,
-  Sector,
-} from "recharts";
+import { Pie, PieChart, PieLabelRenderProps, LabelList } from "recharts";
 import { RechartsDevtools } from "@recharts/devtools";
+import { TransactionContext } from "@/app/context/ContextProvider";
+import { useContext } from "react";
 
-// #region Sample data
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
-
-// #endregion
 const RADIAN = Math.PI / 180;
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const renderCustomizedLabel = ({
   cx,
@@ -27,8 +13,16 @@ const renderCustomizedLabel = ({
   innerRadius,
   outerRadius,
   percent,
-}: PieLabelRenderProps) => {
-  if (cx == null || cy == null || innerRadius == null || outerRadius == null) {
+  name,
+}: PieLabelRenderProps & { name?: string }) => {
+  // Hide the percentage label if it's our "No Data" placeholder
+  if (
+    name === "No Data" ||
+    cx == null ||
+    cy == null ||
+    innerRadius == null ||
+    outerRadius == null
+  ) {
     return null;
   }
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -50,8 +44,14 @@ const renderCustomizedLabel = ({
   );
 };
 
-const MyCustomPie = (props: PieSectorShapeProps) => {
-  return <Sector {...props} fill={COLORS[props.index % COLORS.length]} />;
+export const categoryColors: Record<string, string> = {
+  housing: "#f5853f",
+  food: "#6247aa",
+  transport: "#a0a8a0",
+  health: "#4caf7d",
+  entertainment: "#c77dff",
+  income: "#2ecc71",
+  other: "#e05c5c",
 };
 
 export default function PieChartCustomizedLabel({
@@ -59,25 +59,50 @@ export default function PieChartCustomizedLabel({
 }: {
   isAnimationActive?: boolean;
 }) {
+  const { transactions }: any = useContext(TransactionContext);
+
+  // 1. Group and sum the expenses safely
+  const groupedExpenses = transactions
+    .filter((t: any) => t.type === "expense")
+    .reduce((acc: any, t: any) => {
+      // FIXED: Safely default to 0 to prevent NaN errors
+      acc[t.category] = (acc[t.category] || 0) + t.amount;
+      return acc;
+    }, {});
+
+  // 2. Map to Recharts format
+  let chartData = Object.entries(groupedExpenses).map(([name, value]) => ({
+    name,
+    value: value as number,
+    fill: categoryColors[name.toLowerCase()] || "#8884d8",
+  }));
+
+  // 3. Fallback for Empty State (Grey Pie Chart)
+  if (chartData.length === 0) {
+    chartData = [{ name: "No Data", value: 1, fill: "#e0e0e0" }];
+  }
+
   return (
-    <PieChart
-      style={{
-        width: "60%",
-        maxWidth: "350px",
-        maxHeight: "60vh",
-        aspectRatio: 1,
-      }}
-      responsive
-    >
+    <PieChart width={350} height={350}>
       <Pie
-        data={data}
+        data={chartData}
+        dataKey="value"
+        nameKey="name"
         labelLine={false}
         label={renderCustomizedLabel}
-        fill="#8884d8"
-        dataKey="value"
         isAnimationActive={isAnimationActive}
-        shape={MyCustomPie}
-      />
+      >
+        {/* Only show external labels if we actually have data */}
+        {chartData[0].name !== "No Data" && (
+          <LabelList
+            dataKey="name"
+            position="outside"
+            offset={15}
+            fill="#555"
+            stroke="none"
+          />
+        )}
+      </Pie>
       <RechartsDevtools />
     </PieChart>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext, useState, useEffect } from "react";
 
+
 type transactionStates = {
   type: "income" | "expense";
   name: string;
