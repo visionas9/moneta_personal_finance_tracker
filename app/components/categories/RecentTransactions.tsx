@@ -7,8 +7,6 @@ import Link from "next/link";
 export default function RecentTransactions() {
   const { transactions, handleDelete }: any = useContext(TransactionContext);
 
-  console.log(transactions);
-
   const categoryEmojis: Record<string, string> = {
     housing: "🏠",
     food: "🍔",
