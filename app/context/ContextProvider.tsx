@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 
 type ContextType = {
   transactions: any[];
@@ -19,6 +19,17 @@ export default function ContextProvider({ children }: { children: any }) {
   function toggleForm(): void {
     setIsFormOpen((prevFormOpen) => !prevFormOpen);
   }
+
+  //converts to string to save data to local storage, then updates back to the original
+  useEffect(() => {
+    const saved = localStorage.getItem("transactions");
+    if (saved) setTransactions(JSON.parse(saved));
+  }, []);
+
+  //takes whatever is currently in transactions state, converts it to string, and saves it to the notebook
+  useEffect(() => {
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions]);
 
   return (
     <TransactionContext.Provider
