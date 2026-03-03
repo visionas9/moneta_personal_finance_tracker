@@ -15,7 +15,7 @@ export default function SpendingsCategory() {
     ? new Date(rawDate).toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
-        timeZone: "UTC", // Use UTC to prevent "day-shifting" bugs
+        timeZone: "UTC", // to prevent "day-shifting" bugs
       })
     : "No transactions";
 
@@ -44,13 +44,13 @@ export default function SpendingsCategory() {
   };
 
   return (
-    <div className="w-[45%] bg-surface mt-10 ml-10 py-5 px-8 rounded-xl">
+    <div className="w-[45%] bg-surface mt-10 ml-10 py-4 px-4 rounded-xl">
       <div className="flex items-center justify-between font-montserrat">
         <h1 className="text-mint-cream font-bold">Spending by Category</h1>
         <p className="text-sm text-lighter-text">{formattedDate}</p>
       </div>
 
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center gap-8">
         <PieChartCustomizedLabel />
 
         <div>

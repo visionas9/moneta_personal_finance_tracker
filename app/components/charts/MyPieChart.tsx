@@ -15,7 +15,7 @@ const renderCustomizedLabel = ({
   percent,
   name,
 }: PieLabelRenderProps & { name?: string }) => {
-  // Hide the percentage label if it's our "No Data" placeholder
+  // Hides the percentage label if it's our "No Data" placeholder
   if (
     name === "No Data" ||
     cx == null ||
@@ -77,13 +77,13 @@ export default function PieChartCustomizedLabel({
     fill: categoryColors[name.toLowerCase()] || "#8884d8",
   }));
 
-  // 3. Fallback for Empty State (Grey Pie Chart)
+  // 3. Fallback for Empty State
   if (chartData.length === 0) {
     chartData = [{ name: "No Data", value: 1, fill: "#e0e0e0" }];
   }
 
   return (
-    <PieChart width={350} height={350}>
+    <PieChart width={200} height={200}>
       <Pie
         data={chartData}
         dataKey="value"
@@ -92,7 +92,7 @@ export default function PieChartCustomizedLabel({
         label={renderCustomizedLabel}
         isAnimationActive={isAnimationActive}
       >
-        {/* Only show external labels if we actually have data */}
+        {/* Only shows external labels if we actually have data */}
         {chartData[0].name !== "No Data" && (
           <LabelList
             dataKey="name"
