@@ -1,5 +1,11 @@
 "use client";
-import { Pie, PieChart, PieLabelRenderProps, LabelList } from "recharts";
+import {
+  Pie,
+  PieChart,
+  PieLabelRenderProps,
+  LabelList,
+  ResponsiveContainer,
+} from "recharts";
 import { RechartsDevtools } from "@recharts/devtools";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
@@ -15,7 +21,6 @@ const renderCustomizedLabel = ({
   percent,
   name,
 }: PieLabelRenderProps & { name?: string }) => {
-  // Hides the percentage label if it's our "No Data" placeholder
   if (
     name === "No Data" ||
     cx == null ||
@@ -61,29 +66,25 @@ export default function PieChartCustomizedLabel({
 }) {
   const { transactions }: any = useContext(TransactionContext);
 
-  // 1. Group and sum the expenses safely
   const groupedExpenses = transactions
     .filter((t: any) => t.type === "expense")
     .reduce((acc: any, t: any) => {
-      // FIXED: Safely default to 0 to prevent NaN errors
       acc[t.category] = (acc[t.category] || 0) + t.amount;
       return acc;
     }, {});
 
-  // 2. Map to Recharts format
   let chartData = Object.entries(groupedExpenses).map(([name, value]) => ({
     name,
     value: value as number,
     fill: categoryColors[name.toLowerCase()] || "#8884d8",
   }));
 
-  // 3. Fallback for Empty State
   if (chartData.length === 0) {
     chartData = [{ name: "No Data", value: 1, fill: "#e0e0e0" }];
   }
 
   return (
-    <PieChart width={200} height={200}>
+    <PieChart width={250} height={250}>
       <Pie
         data={chartData}
         dataKey="value"
@@ -92,7 +93,6 @@ export default function PieChartCustomizedLabel({
         label={renderCustomizedLabel}
         isAnimationActive={isAnimationActive}
       >
-        {/* Only shows external labels if we actually have data */}
         {chartData[0].name !== "No Data" && (
           <LabelList
             dataKey="name"

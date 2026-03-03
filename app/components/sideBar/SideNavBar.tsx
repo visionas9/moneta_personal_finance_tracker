@@ -1,6 +1,12 @@
-const links: string[] = ["Dashboard", "Transactions", "Categories", "Settings"];
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const names: string[] = ["Dashboard", "Transactions", "Categories", "Settings"];
 
 export default function SideNavBar() {
+  const pathname = usePathname();
+
   return (
     <aside
       className="w-64 h-full flex flex-col items-center 
@@ -9,12 +15,22 @@ export default function SideNavBar() {
       <nav className="mt-3">
         <p className="text-sm text-lighter-text mb-2">MENU</p>
         <ul className="flex flex-col gap-y-4 text-mint-cream">
-          {links.map((link) => (
+          {names.map((name) => (
             <li
-              key={link}
+              key={name}
               className="hover:text-pumpkin-spice cursor-pointer transition"
             >
-              {link}
+              <Link
+                className={
+                  pathname ===
+                  (name === "Dashboard" ? "/" : `/${name.toLowerCase()}`)
+                    ? "text-pumpkin-spice"
+                    : undefined
+                }
+                href={name === "Dashboard" ? "/" : `/${name.toLowerCase()}`}
+              >
+                {name}
+              </Link>
             </li>
           ))}
         </ul>

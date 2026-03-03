@@ -6,16 +6,14 @@ import { TransactionContext } from "@/app/context/ContextProvider";
 export default function SpendingsCategory() {
   const { transactions = [] }: any = useContext(TransactionContext);
 
-  // 1. Get the raw date string from the latest transaction
   const rawDate =
     transactions.length > 0 ? transactions[transactions.length - 1].date : null;
 
-  // 2. Format it to "Month YYYY"
   const formattedDate = rawDate
     ? new Date(rawDate).toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
-        timeZone: "UTC", // to prevent "day-shifting" bugs
+        timeZone: "UTC",
       })
     : "No transactions";
 
@@ -50,10 +48,10 @@ export default function SpendingsCategory() {
         <p className="text-sm text-lighter-text">{formattedDate}</p>
       </div>
 
-      <div className="flex items-center justify-center gap-8">
+      <div className="flex items-center gap-8">
         <PieChartCustomizedLabel />
 
-        <div>
+        <div className="w-full">
           {categoriesData.map((category) => (
             <div
               key={category.name}
