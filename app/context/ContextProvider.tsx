@@ -7,6 +7,7 @@ type ContextType = {
   isFormOpen: boolean;
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleForm: () => void;
+  handleDelete: (index: number) => void;
 };
 
 export const TransactionContext = createContext<ContextType | null>(null);
@@ -18,6 +19,10 @@ export default function ContextProvider({ children }: { children: any }) {
 
   function toggleForm(): void {
     setIsFormOpen((prevFormOpen) => !prevFormOpen);
+  }
+
+  function handleDelete(index: number): void {
+    setTransactions((prev: any[]) => prev.filter((_, i) => i !== index));
   }
 
   //converts to string to save data to local storage, then updates back to the original
@@ -39,6 +44,7 @@ export default function ContextProvider({ children }: { children: any }) {
         isFormOpen,
         setIsFormOpen,
         toggleForm,
+        handleDelete,
       }}
     >
       {children}

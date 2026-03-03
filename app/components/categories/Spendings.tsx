@@ -53,18 +53,17 @@ export default function SpendingsCategory() {
 
         <div className="w-full">
           {categoriesData.map((category) => (
-            <div
-              key={category.name}
-              className="flex items-center justify-between gap-8 py-2"
-            >
-              <p className="text-lighter-text">
+            <div key={category.name} className="flex items-center gap-4 py-2">
+              <p className="text-lighter-text flex items-center gap-2">
                 <span
-                  className="w-3 h-3 rounded-sm inline-block mr-3"
+                  className="w-3 h-3 rounded-sm inline-block"
                   style={{ backgroundColor: categoryColors[category.name] }}
                 ></span>
                 {category.name}
               </p>
-              <p className="text-roboto-mono text-danger">-{category.total}</p>
+              <p className="text-roboto-mono text-danger ml-auto">
+                -{category.total}
+              </p>
             </div>
           ))}
         </div>

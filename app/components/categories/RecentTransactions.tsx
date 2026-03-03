@@ -2,9 +2,10 @@
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
 import type { transactionStates } from "../form/TransactionForm";
+import Link from "next/link";
 
 export default function RecentTransactions() {
-  const { transactions }: any = useContext(TransactionContext);
+  const { transactions, handleDelete }: any = useContext(TransactionContext);
 
   console.log(transactions);
 
@@ -24,14 +25,19 @@ export default function RecentTransactions() {
         <h1 className="text-mint-cream font-bold text-xl">
           Recent Transactions
         </h1>
-        <p className="text-sm text-lighter-text">View all →</p>
+        <Link
+          href="/transactions"
+          className="text-sm text-lighter-text hover:text-pumpkin-spice "
+        >
+          View all →
+        </Link>
       </div>
 
       <div>
-        {transactions.map((obj: any) => (
+        {transactions.map((obj: any, index: number) => (
           <div
             key={`${obj.name}-${obj.date}`}
-            className="flex items-center justify-between py-3 px-5 hover:bg-pumpkin-dark rounded"
+            className="flex items-center justify-between py-3 px-5 hover:bg-surface-highlight rounded"
           >
             <div className="flex items-center justify-start gap-3 font-montserrat">
               <span className="text-4xl">{categoryEmojis[obj.category]}</span>
@@ -58,6 +64,12 @@ export default function RecentTransactions() {
                 >
                   ${obj.amount}
                 </p>
+                <button
+                  onClick={() => handleDelete(index)}
+                  className="font-roboto-mono text-mint-cream"
+                >
+                  X
+                </button>
               </div>
             </div>
           </div>

@@ -19,4 +19,5 @@
   --color-warning: #f5c542;
   --color-surface: #2a1f26; /* Card and panel backgrounds */
   --color-surface-hover: #3a2d36; /* Hover state for transaction rows */
+  --color-surface-highlight: #4a3545; /* Gradient hover for transaction rows */
 }
