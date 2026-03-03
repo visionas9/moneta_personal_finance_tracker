@@ -84,7 +84,7 @@ export default function PieChartCustomizedLabel({
   }
 
   return (
-    <PieChart width={250} height={250}>
+    <PieChart width={300} height={300}>
       <Pie
         data={chartData}
         dataKey="value"
