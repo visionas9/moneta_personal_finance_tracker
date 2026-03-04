@@ -10,6 +10,10 @@
 
 ---
 
+🔗 **Live Demo:** [moneta-xyz.vercel.app](https://moneta-xyz.vercel.app)
+
+---
+
 ## 🌟 About
 
 Moneta is a personal finance tracker that lets you log your income and expenses, visualize your spending habits, and keep track of your financial health — all in one clean dashboard.
