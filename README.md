@@ -10,7 +10,7 @@
 
 ---
 
-🔗 **Live Demo:** [moneta-xyz.vercel.app](https://moneta-xyz.vercel.app)
+🔗 **Live Demo:** [moneta-xyz.vercel.app](https://moneta-personal-finance-tracker-thv.vercel.app/)
 
 ---
 
