@@ -5,6 +5,7 @@ import SideNavBar from "@/app/components/sideBar/SideNavBar";
 import { Montserrat, Nunito, Roboto_Mono } from "next/font/google";
 import ContextProvider from "./context/ContextProvider";
 import Modal from "@/app/components/form/Modal";
+import Footer from "./components/footer/Footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -23,11 +24,14 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
     >
       <body>
         <ContextProvider>
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col h-screen overflow-hidden">
             <Header />
-            <div className="flex flex-1">
+            <div className="flex flex-1 overflow-hidden">
               <SideNavBar />
-              <main className="flex-1 bg-coffee-bean">{children}</main>
+              <div className="flex flex-col flex-1 overflow-y-auto bg-coffee-bean">
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </div>
             </div>
           </div>
           <Modal />

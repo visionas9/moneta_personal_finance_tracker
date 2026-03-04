@@ -9,8 +9,8 @@ export default function SideNavBar() {
 
   return (
     <aside
-      className="w-64 h-full flex flex-col items-center 
-    font-montserrat bg-ink-black"
+      className="h-screen sticky top-0 w-64 h-full flex flex-col items-center
+   font-montserrat bg-ink-black"
     >
       <nav className="mt-3">
         <p className="text-sm text-lighter-text mb-2">MENU</p>
