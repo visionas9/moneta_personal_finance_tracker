@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { JSX } from "react";
+import React from "react";
 import Header from "@/app/components/header/Header";
 import SideNavBar from "@/app/components/sideBar/SideNavBar";
 import { Montserrat, Nunito, Roboto_Mono } from "next/font/google";
@@ -17,7 +17,11 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
 });
 
-export default function RootLayout({ children }: { children: JSX.Element }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       className={`${montserrat.variable} ${nunito.variable} ${robotoMono.variable}`}
