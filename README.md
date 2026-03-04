@@ -14,7 +14,7 @@
 
 Moneta is a personal finance tracker that lets you log your income and expenses, visualize your spending habits, and keep track of your financial health — all in one clean dashboard.
 
-This was my **first real Next.js project** after 7 months of consistent self-study. No tutorials followed from start to finish — just building, breaking things, figuring it out, and learning deeply along the way.
+This was my **first real Next.js project** after 7 months of learning to code from scratch — starting with HTML and working up through CSS, JavaScript, React, TypeScript and finally Next.js.. No tutorials followed from start to finish — just building, breaking things, figuring it out, and learning deeply along the way.
 
 ---
 
@@ -177,5 +177,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 [![GitHub](https://img.shields.io/badge/GitHub-visionas9-181717?style=flat-square&logo=github)](https://github.com/visionas9)
 
 ---
-
-_First real Next.js project. Many bugs survived. Much learned._ 🚀
