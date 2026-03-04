@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const names: string[] = ["Dashboard", "Transactions", "Categories", "Settings"];
+const names = ["Dashboard", "Transactions", "Categories", "Settings"];
 
 export default function SideNavBar() {
   const pathname = usePathname();

@@ -1,21 +1,17 @@
 "use client";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
-import type { transactionStates } from "../form/TransactionForm";
+import { usePathname } from "next/navigation";
+import { categoryEmojis } from "@/app/lib/constants";
 import Link from "next/link";
 
 export default function RecentTransactions() {
-  const { transactions, handleDelete }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
 
-  const categoryEmojis: Record<string, string> = {
-    housing: "🏠",
-    food: "🍔",
-    transport: "🚌",
-    health: "🏥",
-    entertainment: "🎭",
-    income: "💼",
-    other: "⺟",
-  };
+  const { transactions, handleDelete } = context;
+
+  const pathname = usePathname();
 
   return (
     <div className="flex flex-col items-stretch bg-surface mx-10 mt-10 py-5 px-8 rounded-xl">
@@ -23,16 +19,20 @@ export default function RecentTransactions() {
         <h1 className="text-mint-cream font-bold text-xl">
           Recent Transactions
         </h1>
-        <Link
-          href="/transactions"
-          className="text-sm text-lighter-text hover:text-pumpkin-spice "
-        >
-          View all →
-        </Link>
+        {pathname === "/" ? (
+          <Link
+            href="/transactions"
+            className="text-sm text-lighter-text hover:text-pumpkin-spice "
+          >
+            View all →
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
 
       <div>
-        {transactions.map((obj: any, index: number) => (
+        {transactions.map((obj, index) => (
           <div
             key={`${obj.name}-${obj.date}`}
             className="flex items-center justify-between py-3 px-5 hover:bg-surface-highlight rounded"

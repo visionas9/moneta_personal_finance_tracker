@@ -1,26 +1,22 @@
 "use client";
 import React from "react";
 import { TransactionContext } from "@/app/context/ContextProvider";
-import { useContext, useState, useEffect } from "react";
-
-export type transactionStates = {
-  type: "income" | "expense";
-  name: string;
-  amount: number;
-  category: string;
-  date: string;
-};
+import { useContext, useState } from "react";
+import type { transactionStates } from "@/app/types";
 
 export default function TransactionForm() {
-  const { toggleForm, transactions, setTransactions }: any =
-    useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { toggleForm, transactions, setTransactions } = context;
+
   const [type, setType] = useState<"income" | "expense">("income");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState<number>(0);
   const [category, setCategory] = useState("Housing");
   const [date, setDate] = useState("");
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     const newTransaction: transactionStates = {
       type,
@@ -29,16 +25,9 @@ export default function TransactionForm() {
       category: category.toLowerCase(),
       date,
     };
-    setTransactions((prevTransaction: transactionStates[]) => [
-      ...prevTransaction,
-      newTransaction,
-    ]);
+    setTransactions((prevTransaction) => [...prevTransaction, newTransaction]);
     toggleForm();
   }
-
-  useEffect(() => {
-    console.log(transactions);
-  }, [transactions]);
 
   const inputClass =
     "w-full bg-coffee-bean text-mint-cream rounded-lg px-4 py-2 mt-1 mb-4 border border-lighter-text/20 outline-none focus:border-pumpkin-spice transition";
@@ -51,10 +40,10 @@ export default function TransactionForm() {
             <h1>Add Transaction</h1>
             <button
               type="button"
-              className="bg-pumpkin-spice p-1 rounded "
+              className="bg-pumpkin-spice px-2 py-1 rounded hover:bg-pumpkin-dark/80 transition cursor-pointer"
               onClick={toggleForm}
             >
-              X
+              x
             </button>
           </div>
 

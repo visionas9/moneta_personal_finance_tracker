@@ -9,6 +9,7 @@ import {
 import { RechartsDevtools } from "@recharts/devtools";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
+import { categoryColors } from "@/app/lib/constants";
 
 const RADIAN = Math.PI / 180;
 
@@ -49,26 +50,19 @@ const renderCustomizedLabel = ({
   );
 };
 
-export const categoryColors: Record<string, string> = {
-  housing: "#f5853f",
-  food: "#6247aa",
-  transport: "#a0a8a0",
-  health: "#4caf7d",
-  entertainment: "#c77dff",
-  income: "#2ecc71",
-  other: "#e05c5c",
-};
-
 export default function PieChartCustomizedLabel({
   isAnimationActive = true,
 }: {
   isAnimationActive?: boolean;
 }) {
-  const { transactions }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { transactions } = context;
 
   const groupedExpenses = transactions
-    .filter((t: any) => t.type === "expense")
-    .reduce((acc: any, t: any) => {
+    .filter((t) => t.type === "expense")
+    .reduce((acc: Record<string, number>, t) => {
       acc[t.category] = (acc[t.category] || 0) + t.amount;
       return acc;
     }, {});

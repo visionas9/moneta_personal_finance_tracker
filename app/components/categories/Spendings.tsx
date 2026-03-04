@@ -2,9 +2,13 @@
 import PieChartCustomizedLabel from "@/app/components/charts/MyPieChart";
 import { useContext } from "react";
 import { TransactionContext } from "@/app/context/ContextProvider";
+import { categoryColors } from "@/app/lib/constants";
 
 export default function SpendingsCategory() {
-  const { transactions = [] }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { transactions } = context;
 
   const rawDate =
     transactions.length > 0 ? transactions[transactions.length - 1].date : null;
@@ -18,8 +22,8 @@ export default function SpendingsCategory() {
     : "No transactions";
 
   const spendingsObjects = transactions
-    .filter((t: any) => t.type === "expense")
-    .reduce((acc: any, t: any) => {
+    .filter((t) => t.type === "expense")
+    .reduce((acc: Record<string, number>, t) => {
       acc[t.category] = (acc[t.category] || 0) + t.amount;
       return acc;
     }, {});
@@ -30,16 +34,6 @@ export default function SpendingsCategory() {
       total: total as number,
     }),
   );
-
-  const categoryColors: Record<string, string> = {
-    housing: "#f5853f",
-    food: "#6247aa",
-    transport: "#a0a8a0",
-    health: "#4caf7d",
-    entertainment: "#c77dff",
-    income: "#2ecc71",
-    other: "#e05c5c",
-  };
 
   return (
     <div className="w-[45%] bg-surface mt-10 ml-10 py-4 px-4 rounded-xl">

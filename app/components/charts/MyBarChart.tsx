@@ -14,7 +14,10 @@ import { useContext } from "react";
 
 // #endregion
 const SimpleBarChart = () => {
-  const { transactions }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { transactions } = context;
 
   const today = new Date();
 
@@ -31,7 +34,7 @@ const SimpleBarChart = () => {
   }).reverse();
 
   if (transactions && transactions.length > 0) {
-    transactions.forEach((transaction: any) => {
+    transactions.forEach((transaction) => {
       const date = new Date(transaction.date);
       const month = date.getMonth();
       const year = date.getFullYear();

@@ -1,19 +1,15 @@
 "use client";
-import React, { useState, useEffect, createContext } from "react";
-
-type ContextType = {
-  transactions: any[];
-  setTransactions: React.Dispatch<React.SetStateAction<any[]>>;
-  isFormOpen: boolean;
-  setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  toggleForm: () => void;
-  handleDelete: (index: number) => void;
-};
+import { useState, useEffect, createContext } from "react";
+import type { ContextType, transactionStates } from "@/app/types";
 
 export const TransactionContext = createContext<ContextType | null>(null);
 
-export default function ContextProvider({ children }: { children: any }) {
-  const [transactions, setTransactions] = useState<any[]>([]);
+export default function ContextProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [transactions, setTransactions] = useState<transactionStates[]>([]);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -22,7 +18,7 @@ export default function ContextProvider({ children }: { children: any }) {
   }
 
   function handleDelete(index: number): void {
-    setTransactions((prev: any[]) => prev.filter((_, i) => i !== index));
+    setTransactions((prev) => prev.filter((_, i) => i !== index));
   }
 
   //converts to string to save data to local storage, then updates back to the original

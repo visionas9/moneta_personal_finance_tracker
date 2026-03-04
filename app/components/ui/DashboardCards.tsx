@@ -4,7 +4,10 @@ import { useContext } from "react";
 import SumCards from "@/app/components/ui/SumCards";
 
 export default function DashboardCards() {
-  const { transactions }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { transactions } = context;
 
   const totalIncome = (transactions ?? [])
     .filter((t: any) => t.type === "income")

@@ -1,10 +1,12 @@
 "use client";
-
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
 
 export default function AddTransactionButton() {
-  const { toggleForm }: any = useContext(TransactionContext);
+  const context = useContext(TransactionContext);
+  if (!context) return null;
+
+  const { toggleForm } = context;
 
   return (
     <button
