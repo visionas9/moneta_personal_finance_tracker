@@ -8,7 +8,7 @@ export default function TransactionForm() {
   const context = useContext(TransactionContext);
   if (!context) return null;
 
-  const { toggleForm, transactions, setTransactions } = context;
+  const { toggleForm, setTransactions } = context;
 
   const [type, setType] = useState<"income" | "expense">("income");
   const [name, setName] = useState("");
