@@ -8,7 +8,6 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { RechartsDevtools } from "@recharts/devtools";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
 
@@ -70,24 +69,24 @@ const SimpleBarChart = () => {
         bottom: 5,
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgba(160,168,160,0.2)" />
       <XAxis dataKey="name" />
       <YAxis width="auto" />
-      <Tooltip />
+      <Tooltip
+        contentStyle={{ background: "#2a1f26", border: "none", borderRadius: 8 }}
+        cursor={{ fill: "rgba(255,255,255,0.05)" }}
+      />
       <Legend />
       <Bar
         dataKey="income"
         fill="#4caf7d"
-        activeBar={{ fill: "pink", stroke: "blue" }}
         radius={[10, 10, 0, 0]}
       />
       <Bar
         dataKey="expenses"
         fill="#e05c5c"
-        activeBar={{ fill: "gold", stroke: "purple" }}
         radius={[10, 10, 0, 0]}
       />
-      <RechartsDevtools />
     </BarChart>
   );
 };

@@ -3,6 +3,7 @@ import PieChartCustomizedLabel from "@/app/components/charts/MyPieChart";
 import { useContext } from "react";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { categoryColors } from "@/app/lib/constants";
+import { formatMoney } from "@/app/lib/format";
 
 export default function SpendingsCategory() {
   const context = useContext(TransactionContext);
@@ -36,13 +37,13 @@ export default function SpendingsCategory() {
   );
 
   return (
-    <div className="w-[45%] bg-surface mt-10 ml-10 py-4 px-4 rounded-xl">
-      <div className="flex items-center justify-between font-montserrat">
-        <h1 className="text-mint-cream font-bold">Spending by Category</h1>
+    <div className="bg-surface p-4 md:p-6 rounded-xl">
+      <div className="flex items-center justify-between gap-3 font-montserrat">
+        <h2 className="text-mint-cream font-bold">Spending by Category</h2>
         <p className="text-sm text-lighter-text">{formattedDate}</p>
       </div>
 
-      <div className="flex items-center gap-8">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
         <PieChartCustomizedLabel />
 
         <div className="w-full">
@@ -55,8 +56,8 @@ export default function SpendingsCategory() {
                 ></span>
                 {category.name}
               </p>
-              <p className="text-roboto-mono text-danger ml-auto">
-                -{category.total}
+              <p className="font-roboto-mono text-danger ml-auto">
+                -{formatMoney(category.total)}
               </p>
             </div>
           ))}

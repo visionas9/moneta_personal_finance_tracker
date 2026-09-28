@@ -6,7 +6,6 @@ import {
   LabelList,
   ResponsiveContainer,
 } from "recharts";
-import { RechartsDevtools } from "@recharts/devtools";
 import { TransactionContext } from "@/app/context/ContextProvider";
 import { useContext } from "react";
 import { categoryColors } from "@/app/lib/constants";
@@ -78,7 +77,10 @@ export default function PieChartCustomizedLabel({
   }
 
   return (
-    <PieChart width={300} height={300}>
+    <PieChart
+      style={{ width: "100%", maxWidth: 260, aspectRatio: 1 }}
+      responsive
+    >
       <Pie
         data={chartData}
         dataKey="value"
@@ -97,7 +99,6 @@ export default function PieChartCustomizedLabel({
           />
         )}
       </Pie>
-      <RechartsDevtools />
     </PieChart>
   );
 }
