@@ -15,5 +15,5 @@ export const categoryEmojis: Record<string, string> = {
   health: "🏥",
   entertainment: "🎭",
   income: "💼",
-  other: "⺟",
+  other: "📦",
 };

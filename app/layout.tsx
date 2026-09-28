@@ -30,7 +30,8 @@ export default function RootLayout({
         <ContextProvider>
           <div className="flex flex-col h-screen overflow-hidden">
             <Header />
-            <div className="flex flex-1 overflow-hidden">
+            {/* Stacked on a phone (nav as a row under the header), side by side from md up. */}
+            <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
               <SideNavBar />
               <div className="flex flex-col flex-1 overflow-y-auto bg-coffee-bean">
                 <main className="flex-1">{children}</main>

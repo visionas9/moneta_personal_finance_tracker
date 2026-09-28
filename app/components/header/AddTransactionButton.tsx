@@ -10,11 +10,10 @@ export default function AddTransactionButton() {
 
   return (
     <button
-      className="self-center px-4 py-2 bg-pumpkin-spice mr-10 
-      border-none rounded cursor-pointer hover:bg-pumpkin-dark "
+      className="shrink-0 px-4 py-2 bg-pumpkin-spice text-ink-black font-semibold rounded-lg cursor-pointer transition hover:bg-pumpkin-dark"
       onClick={toggleForm}
     >
-      + Add Transaction
+      + Add<span className="hidden sm:inline"> Transaction</span>
     </button>
   );
 }
