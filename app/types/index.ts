@@ -13,4 +13,5 @@ export type ContextType = {
   setIsFormOpen: React.Dispatch<React.SetStateAction<boolean>>;
   toggleForm: () => void;
   handleDelete: (index: number) => void;
+  isLoaded: boolean;
 };
