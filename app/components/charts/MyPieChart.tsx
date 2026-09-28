@@ -3,7 +3,6 @@ import {
   Pie,
   PieChart,
   PieLabelRenderProps,
-  LabelList,
   ResponsiveContainer,
 } from "recharts";
 import { TransactionContext } from "@/app/context/ContextProvider";
@@ -21,8 +20,10 @@ const renderCustomizedLabel = ({
   percent,
   name,
 }: PieLabelRenderProps & { name?: string }) => {
+  // Small slices would print their percentages on top of each other.
   if (
     name === "No Data" ||
+    (percent ?? 0) < 0.06 ||
     cx == null ||
     cy == null ||
     innerRadius == null ||
@@ -86,18 +87,10 @@ export default function PieChartCustomizedLabel({
         dataKey="value"
         nameKey="name"
         labelLine={false}
+        stroke="#2a1f26"
         label={renderCustomizedLabel}
         isAnimationActive={isAnimationActive}
       >
-        {chartData[0].name !== "No Data" && (
-          <LabelList
-            dataKey="name"
-            position="outside"
-            offset={15}
-            fill="#555"
-            stroke="none"
-          />
-        )}
       </Pie>
     </PieChart>
   );
