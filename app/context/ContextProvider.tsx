@@ -12,6 +12,9 @@ export default function ContextProvider({
   const [transactions, setTransactions] = useState<transactionStates[]>([]);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
+  // False until localStorage has been read, so "no transactions" is not
+  // shown to someone who has some, and the empty list is never saved over them.
+  const [isLoaded, setIsLoaded] = useState(false);
 
   function toggleForm(): void {
     setIsFormOpen((prevFormOpen) => !prevFormOpen);
@@ -25,12 +28,13 @@ export default function ContextProvider({
   useEffect(() => {
     const saved = localStorage.getItem("transactions");
     if (saved) setTransactions(JSON.parse(saved));
+    setIsLoaded(true);
   }, []);
 
   //takes whatever is currently in transactions state, converts it to string, and saves it to the notebook
   useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-  }, [transactions]);
+    if (isLoaded) localStorage.setItem("transactions", JSON.stringify(transactions));
+  }, [transactions, isLoaded]);
 
   return (
     <TransactionContext.Provider
@@ -41,6 +45,7 @@ export default function ContextProvider({
         setIsFormOpen,
         toggleForm,
         handleDelete,
+        isLoaded,
       }}
     >
       {children}
