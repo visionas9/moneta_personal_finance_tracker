@@ -2,17 +2,19 @@ import AddTransactionButton from "./AddTransactionButton";
 
 export default function Header() {
   return (
-    <div className="sticky top-0 z-50">
-      <main className="relative flex justify-between py-4 bg-ink-black text-mint-cream ">
-        <div className="flex flex-1 flex-col items-center justify-center ">
-          <h1 className=" font-montserrat font-bold text-4xl">
+    <header className="sticky top-0 z-40 bg-ink-black text-mint-cream">
+      <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-10 md:py-4">
+        <div>
+          <p className="font-montserrat font-bold text-2xl md:text-4xl">
             <span className="text-pumpkin-spice">Mon</span>eta
-          </h1>
-          <p className="text-lighter-text">Your personal finance tracker.</p>
+          </p>
+          <p className="hidden sm:block text-sm text-lighter-text">
+            Your personal finance tracker.
+          </p>
         </div>
 
         <AddTransactionButton />
-      </main>
-    </div>
+      </div>
+    </header>
   );
 }
