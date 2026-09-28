@@ -11,12 +11,12 @@ export default function DashboardCards() {
   const { transactions } = context;
 
   const totalIncome = (transactions ?? [])
-    .filter((t: any) => t.type === "income")
-    .reduce((sum: number, t: any) => sum + t.amount, 0);
+    .filter((t) => t.type === "income")
+    .reduce((sum, t) => sum + t.amount, 0);
 
   const totalExpenses = transactions
-    .filter((t: any) => t.type === "expense")
-    .reduce((sum: number, t: any) => sum + t.amount, 0);
+    .filter((t) => t.type === "expense")
+    .reduce((sum, t) => sum + t.amount, 0);
 
   const savingsRate =
     totalIncome > 0
