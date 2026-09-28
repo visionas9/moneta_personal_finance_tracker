@@ -21,7 +21,11 @@ export default function RecentTransactions() {
   const pathname = usePathname();
   if (!context) return null;
 
-  const { transactions, handleDelete, toggleForm } = context;
+  const { transactions, handleDelete, toggleForm, setTransactions } = context;
+
+  function clearAll() {
+    if (window.confirm("Delete all transactions? This can't be undone.")) setTransactions([]);
+  }
   const onDashboard = pathname === "/";
 
   // Newest first. The index travels along, because delete works by position
@@ -44,6 +48,14 @@ export default function RecentTransactions() {
           >
             View all →
           </Link>
+        ) : null}
+        {!onDashboard && transactions.length > 0 ? (
+          <button
+            onClick={clearAll}
+            className="text-sm text-lighter-text hover:text-danger cursor-pointer transition"
+          >
+            Clear all
+          </button>
         ) : null}
       </div>
 
